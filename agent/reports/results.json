@@ -1,0 +1,79 @@
+[
+  {
+    "requirement_id": "DASH-001",
+    "requirement": "The dashboard shows checking and savings accounts with readable balances.",
+    "verdict": "passed",
+    "expected": "Both accounts are visible and balances use two decimal places.",
+    "observed": "Dashboard loaded with both seeded accounts and two-decimal balances.",
+    "evidence": [
+      "evidence/01-dashboard.png"
+    ],
+    "reproduction": [
+      "Open the landing page",
+      "Click Enter Demo",
+      "Refresh the dashboard"
+    ]
+  },
+  {
+    "requirement_id": "TRANSFER-VALID-001",
+    "requirement": "A valid transfer decreases the source balance, increases the destination balance, and records the memo.",
+    "verdict": "passed",
+    "expected": "The source decreases by $25.00, the destination increases by $25.00, and the memo appears in the receipt.",
+    "observed": "Both balances changed by the expected amount and the memo was visible.",
+    "evidence": [
+      "evidence/05-valid-transfer.png"
+    ],
+    "reproduction": [
+      "Open Transfer",
+      "Record the two current balances",
+      "Transfer $25.00 from the default source to destination",
+      "Add the memo QA valid transfer",
+      "Submit and verify the receipt"
+    ]
+  },
+  {
+    "requirement_id": "TRANSFER-NEG-001",
+    "requirement": "Negative transfer amounts must be rejected and must not create a completed transfer.",
+    "verdict": "failed",
+    "expected": "A clear validation or failure message appears and no success state is shown.",
+    "observed": "The negative amount was accepted or produced a success state.",
+    "evidence": [
+      "evidence/02-negative-transfer.png"
+    ],
+    "reproduction": [
+      "Open Transfer",
+      "Keep the default source and destination accounts",
+      "Enter -10 as the amount",
+      "Submit the transfer"
+    ]
+  },
+  {
+    "requirement_id": "FILTER-DATE-001",
+    "requirement": "The selected end date is inclusive when filtering transaction history.",
+    "verdict": "failed",
+    "expected": "A transaction occurring on 2025-09-03 appears when the end date is 2025-09-03.",
+    "observed": "The transaction on the selected end date was not visible in the filtered results.",
+    "evidence": [
+      "evidence/03-end-date-filter.png"
+    ],
+    "reproduction": [
+      "Open Transactions",
+      "Set the end date to 2025-09-03",
+      "Apply filters"
+    ]
+  },
+  {
+    "requirement_id": "AUTH-LOGOUT-001",
+    "requirement": "Logging out returns to the landing page and blocks direct dashboard access.",
+    "verdict": "passed",
+    "expected": "A logged-out user cannot use the protected dashboard route.",
+    "observed": "Direct dashboard navigation was blocked after logout.",
+    "evidence": [
+      "evidence/04-logout-protection.png"
+    ],
+    "reproduction": [
+      "Click Log out",
+      "Navigate directly to /dashboard"
+    ]
+  }
+]
